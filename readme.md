@@ -1,6 +1,6 @@
 # rlipython
 
-readline fromtend for ipython 5.5+ and 6.0+
+readline fromtend for ipython 5.4+ and 6.0+
 
 See https://github.com/ipython/ipython/issues/10364 for information. 
 
