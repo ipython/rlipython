@@ -11,7 +11,10 @@ IPython's LICENSE.
 
 # Maintenance
 
-This is a proof of concept, the IPython team does not maintain this packages
-(even if individual members may contribute code). I (@Carreau), wrote it to see
-how complex it would be to make it work, I have no intention of maintaining it,
-of publishing it to PyPI.
+This is something that we offer in support of historical compatibility and
+certain specific use cases where our main interface (prompt-toolkit) isn't
+optimal. But we do not envision any significant development beyond fixing
+critical bugs. We only have the resources to offer this as a best-effort
+solution. If you are interested in doing any significant development on this
+tool, please let us know via an issue, and we can explore transferring
+maintainership of the package to you.
