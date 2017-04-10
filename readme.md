@@ -1,7 +1,8 @@
 # rlipython
 
-This brings the classic readline frontend, which was around in IPython up until
-version 4.2 to IPython 5.4+ and 6.0+.
+Up until version 4.2, command-line IPython had a readline frontend, which was
+replaced by prompt_toolkit in IPython 5. `rlipython` brings that classic
+readline functionality to IPython 5.4+ and 6.0+.
 
 See https://github.com/ipython/ipython/issues/10364 for information. 
 
