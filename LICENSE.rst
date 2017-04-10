@@ -1,10 +1,7 @@
 rlipython is licensed under the terms of the Modified BSD License (also known as
 New or Revised or 3-Clause BSD), as follows:
 
-- Copyright (c) 2008-2016, IPython Development Team
-- Copyright (c) 2001-2007, Fernando Perez <fernando.perez@colorado.edu>
-- Copyright (c) 2001, Janko Hauser <jhauser@zscout.de>
-- Copyright (c) 2001, Nathaniel Gray <n8gray@caltech.edu>
+- Copyright (c) 2001-, IPython Development Team
 
 All rights reserved.
 
