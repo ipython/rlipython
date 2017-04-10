@@ -378,7 +378,7 @@ class TerminalInteractiveShell(InteractiveShell):
         self.readline_remove_delims = '-/~'
         self.multiline_history = False
         if self.readline_use:
-            import IPython.utils.rlineimpl as readline
+            from . import rlineimpl as readline
 
         self.rl_next_input = None
         self.rl_do_indent = False
