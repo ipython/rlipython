@@ -27,7 +27,7 @@ from IPython.utils.process import abbrev_cwd
 from warnings import warn
 from logging import error
 from IPython.utils.text import num_ini_spaces, SList, strip_email_quotes
-from traitlets import Integer, CBool, Unicode
+from traitlets import Integer, CBool, Unicode, default
 
 
 def get_default_editor():
@@ -322,6 +322,19 @@ class TerminalInteractiveShell(InteractiveShell):
         curses support), specify it yourself. Otherwise don't change the
         default.""",
     )
+
+    @default('displayhook_class')
+    def _displayhook_class_default(self):
+        from IPython.core.displayhook import DisplayHook
+        class OldSchoolPrompt(DisplayHook):
+            reset = "\033[0m"
+            out = "\033[31mOut[\033[31;1m{}\033[0;31m]: "
+            def write_output_prompt(self):
+                out = self.out.format(self.shell.execution_count)
+                sys.stdout.write(out + self.reset)
+
+        return OldSchoolPrompt
+
     term_title = CBool(False, config=True,
         help="Enable auto setting the terminal title."
     )
