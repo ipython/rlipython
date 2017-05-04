@@ -7,3 +7,4 @@ __version__ = '.'.join([str(x) for x in version_info])
 
 from .completer import RLCompleter
 from .interactiveshell import TerminalInteractiveShell
+from .utils import install, uninstall
