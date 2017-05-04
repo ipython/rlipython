@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 """ Imports and provides the 'correct' version of readline for the platform.
 
-Readline is used throughout IPython as::
-
-    import IPython.utils.rlineimpl as readline
-
 In addition to normal readline stuff, this module provides have_readline
 boolean and _outputfile variable used in IPython.utils.
 """
@@ -17,9 +13,7 @@ _rlmod_names = ['gnureadline', 'readline']
 have_readline = False
 for _rlmod_name in _rlmod_names:
     try:
-        # import readline as _rl
         _rl = __import__(_rlmod_name)
-        # from readline import *
         globals().update({k:v for k,v in _rl.__dict__.items() if not k.startswith('_')})
     except ImportError:
         pass
