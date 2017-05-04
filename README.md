@@ -6,7 +6,7 @@ readline functionality to IPython 5.4+ and 6.0+.
 
 See https://github.com/ipython/ipython/issues/10364 for information.
 
-# Usage
+# Try it out
 
 You can try out `rlipython` like this:
 
@@ -14,14 +14,19 @@ You can try out `rlipython` like this:
 ipython --TerminalIPythonApp.interactive_shell_class=rlipython.TerminalInteractiveShell
 ```
 
-# Installation
+# Do I have to do that every time?
+
+No. To have `rlipython` enabled automatically, do this:
 
 ```python
 import rlipython; rlipython.install()
 ```
 
-This will enable rlipython for the active IPython profile, or the default
-profile, if you run it from plain Python.
+This will enable `rlipython` for the default IPython profile, if you run it
+using plain `python`, or the active profile if you run it from `ipython`.
+
+After running `rlipyton.install()`, you can go back to starting IPython just by
+using `ipython` without the extra configuration flag.
 
 
 # Removal
