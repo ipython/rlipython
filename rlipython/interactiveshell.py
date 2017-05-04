@@ -323,14 +323,17 @@ class TerminalInteractiveShell(InteractiveShell):
         default.""",
     )
 
+    reset = "\033[0m"
+    prompt_in1 = "\033[32mIn [\033[32;1m{}\033[0;32m]: " + reset
+    prompt_in2 = "\033[32m   ...: " + reset
     @default('displayhook_class')
     def _displayhook_class_default(self):
         from IPython.core.displayhook import DisplayHook
         class OldSchoolPrompt(DisplayHook):
-            reset = "\033[0m"
             out = "\033[31mOut[\033[31;1m{}\033[0;31m]: "
+            reset = self.reset
             def write_output_prompt(self):
-                out = self.out.format(self.shell.execution_count)
+                out = self.out.format(self.prompt_count)
                 sys.stdout.write(out + self.reset)
 
         return OldSchoolPrompt
@@ -674,8 +677,12 @@ class TerminalInteractiveShell(InteractiveShell):
         while not self.exit_now:
             self.hooks.pre_prompt_hook()
             if more:
+                # Our default continuation prompt has the right length at the
+                # beginning (when execution count is in the single digits).
+                # We add padding to accomodate multi-digit execution counts
                 try:
-                    prompt = '   ...: '
+                    pad = " " * (len(str(self.execution_count)) -1)
+                    prompt = pad + self.prompt_in2
                 except:
                     self.showtraceback()
                 if self.autoindent:
@@ -683,7 +690,7 @@ class TerminalInteractiveShell(InteractiveShell):
 
             else:
                 try:
-                    prompt = self.separate_in + 'In [{}]: '.format(self.execution_count)
+                    prompt = self.separate_in + self.prompt_in1.format(self.execution_count)
                 except:
                     self.showtraceback()
             try:
