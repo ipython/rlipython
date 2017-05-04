@@ -323,15 +323,15 @@ class TerminalInteractiveShell(InteractiveShell):
         default.""",
     )
 
-    reset = "\033[0m"
-    prompt_in1 = "\033[32mIn [\033[32;1m{}\033[0;32m]: " + reset
-    prompt_in2 = "\033[32m   ...: " + reset
+    _term_reset = "\033[0m"
+    prompt_in1 = "\033[32mIn [\033[32;1m{}\033[0;32m]: " + _term_reset
+    prompt_in2 = "\033[32m   ...: " + _term_reset
     @default('displayhook_class')
     def _displayhook_class_default(self):
         from IPython.core.displayhook import DisplayHook
         class OldSchoolPrompt(DisplayHook):
             out = "\033[31mOut[\033[31;1m{}\033[0;31m]: "
-            reset = self.reset
+            reset = self._term_reset
             def write_output_prompt(self):
                 out = self.out.format(self.prompt_count)
                 sys.stdout.write(out + self.reset)
