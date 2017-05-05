@@ -4,6 +4,7 @@ setup(
     name='rlipython',
     version='0.1dev',
     packages=['rlipython',],
+    install_requires=["ipython>5.3"],
     license='BSD',
     author='The IPython Development Team',
     author_email='ipython-dev@python.org',
