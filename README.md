@@ -37,12 +37,4 @@ import rlipython; rlipython.uninstall()
 # License
 
 This code has was extracted from IPython 5.x-dev, so it is under [IPython's
-LICENSE](LICENSE.rst)
-
-# Maintenance
-
-This is something that we offer in support of historical compatibility and
-certain specific use cases where our main interface (prompt-toolkit) isn't
-optimal. But we do not envision any significant development beyond fixing
-critical bugs. We only have the resources to offer this as a best-effort
-solution.
+LICENSE](LICENSE.rst).
