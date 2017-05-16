@@ -20,23 +20,26 @@ start IPython using the profile, and then run
 """
 
 _rl_config = "rlipython.TerminalInteractiveShell"
-
-ip = get_ipython()
-
-if ip is None:
-    profile_dir = paths.locate_profile()
-else:
-    profile_dir = ip.profile_dir.location
-
-json_path = path.join(profile_dir, "ipython_config.json")
+shell_key = "interactive_shell_class"
+app_key = "TerminalIPythonApp"
 
 def get_config():
+    ip = get_ipython()
+
+    if ip is None:
+        profile_dir = paths.locate_profile()
+    else:
+        profile_dir = ip.profile_dir.location
+
+    json_path = path.join(profile_dir, "ipython_config.json")
+
     try:
         with open(json_path, 'r') as f:
             config = json.load(f)
     except (FileNotFoundError, json.decoder.JSONDecodeError):
         config = {}
-    return config
+    return config, json_path
+
 
 
 def install():
@@ -49,27 +52,27 @@ def install():
     Run `uninstall()` if you ever change your mind and want to revert to the
     default IPython behavior.
     """
-    cfg = get_config()
+    cfg, json_path = get_config()
 
-    installed = cfg.get("TerminalIPythonApp",{}).get("interactive_shell_class") == _rl_config
+    installed = cfg.get(app_key, {}).get(shell_key) == _rl_config
 
     if installed:
         print ("Looks like rlipython is already installed.")
         return
 
-    if ip is None:
+    if get_ipython() is None:
         log.warning(_default_warning + json_path)
 
     with open(json_path, 'w') as f:
-        cfg.update({"TerminalIPythonApp": {"interactive_shell_class":"rlipython.TerminalInteractiveShell"}})
+        cfg.update({app_key: {shell_key: _rl_config}})
         json.dump(cfg, f)
 
     print("Installation succeeded: enjoy rlipython the next time you run ipython!")
 
 def uninstall():
-    cfg = get_config()
+    cfg, json_path = get_config()
     with open(json_path, 'w') as f:
-        cfg.get("TerminalIPythonApp", {}).pop("interactive_shell_class", None)
+        cfg.get(app_key, {}).pop(shell_key, None)
         json.dump(cfg, f)
 
     print("Uninstalled rlipython.")
