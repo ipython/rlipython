@@ -176,6 +176,11 @@ class TerminalInteractiveShell(InteractiveShell):
     # executed via paste magics functions
     using_paste_magics = CBool(False)
 
+    # ignore prompt_toolkit specific settings, see this github issue for
+    # more context: https://github.com/ipython/rlipython/issues/13
+    editing_mode = Unicode("ignored").tag(config=True)
+    display_completions = Unicode("ignored").tag(config=True)
+
     # In the terminal, GUI control is done via PyOS_InputHook
     @staticmethod
     def enable_gui(gui=None, app=None):
