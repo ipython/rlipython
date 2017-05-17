@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='rlipython',
-    version='0.1dev',
+    version='0.1.0',
     packages=['rlipython',],
     install_requires=["ipython>5.3"],
     license='BSD',
