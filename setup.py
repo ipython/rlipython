@@ -2,9 +2,9 @@ from distutils.core import setup
 
 setup(
     name='rlipython',
-    version='0.1.0',
+    version='0.1.1',
     packages=['rlipython',],
-    install_requires=["ipython>5.3"],
+    install_requires=["ipython>5.3", "gnureadline"],
     license='BSD',
     author='The IPython Development Team',
     author_email='ipython-dev@python.org',
