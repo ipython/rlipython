@@ -6,14 +6,6 @@ readline functionality to IPython 5.4+ and 6.0+.
 
 See https://github.com/ipython/ipython/issues/10364 for information.
 
-## Python 2 or Python 3
-
-`rlipython` will work in both Python 2 and Python 3. However, as of May 15th,
-2017, IPython 6.0 is the only released version of IPython which supports a
-configurable `interactive_shell_class`, but IPython 6.0 only works in Python 3.
-So if you want to use `rlipython` in Python 2, you will have to install the
-[IPython 5.x branch from git](https://github.com/ipython/ipython/tree/5.x), or
-wait for IPython 5.4 release.
 
 
 # Try it out
@@ -43,6 +35,15 @@ using `ipython` without the extra configuration flag.
 ```python
 import rlipython; rlipython.uninstall()
 ```
+
+## Python 2 or Python 3
+
+`rlipython` will work in both Python 2 and Python 3. However, as of May 15th,
+2017, IPython 6.0 is the only released version of IPython which supports a
+configurable `interactive_shell_class`, but IPython 6.0 only works in Python 3.
+So if you want to use `rlipython` in Python 2, you will have to install the
+[IPython 5.x branch from git](https://github.com/ipython/ipython/tree/5.x), or
+wait for IPython 5.4 release.
 
 # License
 
