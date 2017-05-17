@@ -6,6 +6,11 @@ from IPython import get_ipython, paths
 
 log = logging.getLogger("rlipython")
 
+try:
+    FileNotFoundError
+except NameError: # python 2
+    FileNotFoundError = IOError
+    json.decoder.JSONDecodeError = ValueError
 
 _default_warning = """
 will just configure the default IPython profile to use it, by editing this
