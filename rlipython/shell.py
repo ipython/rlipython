@@ -153,8 +153,13 @@ class TerminalInteractiveShell(InteractiveShell):
     )
 
     _term_reset = "\033[0m"
-    prompt_in1 = "\033[32mIn [\033[32;1m{}\033[0;32m]: " + _term_reset
-    prompt_in2 = "\033[32m   ...: " + _term_reset
+    # This is ugly because not only do we have a bunch of ansi escape
+    # sequences, but we also have to wrap each escape code in \001 and \002
+    # for readline to be able to insert history matches properly.
+    # prompt_in1 = "\033[32mIn [\033[32;1m{}\033[0;32m]: " + _term_reset
+    prompt_in1 = "\001\033[32m\002In [\001\033[32;1m\002{}\001\033[0;32m\002]: \001" + _term_reset + "\002"
+    prompt_in2 = "\001\033[32m\002   ...: \001" + _term_reset + "\002"
+
     @default('displayhook_class')
     def _displayhook_class_default(self):
         from IPython.core.displayhook import DisplayHook
