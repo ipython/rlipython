@@ -1,5 +1,6 @@
 import json
 import logging
+import sys
 from os import path
 
 from IPython import get_ipython, paths
@@ -13,7 +14,7 @@ except NameError: # python 2
     FileNotFoundError = IOError
     json.decoder.JSONDecodeError = ValueError
 
-_default_warning = """
+DEFAULT_WARNING = """
 will just configure the default IPython profile to use it, by editing this
 file:
 
@@ -25,7 +26,24 @@ start IPython using the profile, and then run
     import rlipython; rlipython.install()
 """
 
-_rl_config = "rlipython.TerminalInteractiveShell"
+
+OSX_PY36_GNUREADLINE_WARNING = """
+On OS X, the latest released version of python-gnureadline is currently broken
+for Python3.6 and newer. Relevant bug report:
+https://github.com/ludwigschwardt/python-gnureadline/issues/50
+
+If you see errors that crash Python with messages like this:
+
+    python3(35119,0x100fa3310) malloc: *** error for object 0x1044849c8: pointer
+    being freed was not allocated
+    *** set a breakpoint in malloc_error_break to debug
+    Abort trap: 6
+
+You will want to:
+
+    pip install https://github.com/ludwigschwardt/python-gnureadline/archive/master.zip
+"""
+rl_config = "rlipython.TerminalInteractiveShell"
 shell_key = "interactive_shell_class"
 app_key = "TerminalIPythonApp"
 
@@ -64,20 +82,23 @@ def install():
 
     cfg, json_path = get_config()
 
-    installed = cfg.get(app_key, {}).get(shell_key) == _rl_config
+    installed = cfg.get(app_key, {}).get(shell_key) == rl_config
 
     if installed:
         print ("Looks like rlipython is already installed.")
         return
 
     if get_ipython() is None:
-        log.warning(_default_warning + json_path)
+        log.warning(DEFAULT_WARNING + json_path)
 
     with open(json_path, 'w') as f:
-        cfg.update({app_key: {shell_key: _rl_config}})
+        cfg.update({app_key: {shell_key: rl_config}})
         json.dump(cfg, f)
 
     print("Installation succeeded: enjoy rlipython the next time you run ipython!")
+
+    if sys.platform == "darwin" and sys.version_info[:2] >= (3, 6):
+        print(OSX_PY36_GNUREADLINE_WARNING)
 
 def uninstall():
     cfg, json_path = get_config()
