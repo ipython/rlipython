@@ -24,8 +24,8 @@ No. To have `rlipython` enabled automatically, do this:
 import rlipython; rlipython.install()
 ```
 
-This will enable `rlipython` for the default IPython profile, if you run it
-using plain `python`, or the active profile if you run it from `ipython`.
+This will enable `rlipython` for the default IPython profile if you run it
+using plain `python` or the active profile if you run it from `ipython`.
 
 After running `rlipyton.install()`, you can go back to starting IPython just by
 using `ipython` without the extra configuration flag.
