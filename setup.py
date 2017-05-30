@@ -1,10 +1,17 @@
 from distutils.core import setup
 
+
+extras_requires = {
+    ':sys_platform == "win32"': ['pyreadline>=2'],
+    ':sys_platform == "darwin" and platform_python_implementation == "CPython"': ['gnureadline'],
+}
+
 setup(
     name='rlipython',
     version='0.1.1',
     packages=['rlipython',],
-    install_requires=["ipython>5.3", "gnureadline"],
+    install_requires=["ipython>5.3"],
+    extras_requires=extras_requires,
     license='BSD',
     author='The IPython Development Team',
     author_email='ipython-dev@python.org',
