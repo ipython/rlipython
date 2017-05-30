@@ -3,6 +3,7 @@ import logging
 from os import path
 
 from IPython import get_ipython, paths
+from IPython import version_info as ipython_version
 
 log = logging.getLogger("rlipython")
 
@@ -57,6 +58,10 @@ def install():
     Run `uninstall()` if you ever change your mind and want to revert to the
     default IPython behavior.
     """
+    if ipython_version < (5,4):
+        print("`rliptyhon` will only work with IPython 5.4. or above. Aborting")
+        return
+
     cfg, json_path = get_config()
 
     installed = cfg.get(app_key, {}).get(shell_key) == _rl_config
