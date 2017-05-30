@@ -19,7 +19,7 @@ extras_requires = {
 
 setup(
     name='rlipython',
-    version='0.1.2.dev',
+    version='0.1.2.dev0',
     packages=['rlipython',],
     install_requires=["ipython>5.3"],
     extras_requires=extras_requires,
