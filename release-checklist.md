@@ -34,7 +34,10 @@ A list of things that need to work for each and every release.
     rlipython-0.1.2.dev0-py2.py3-none-any.whl rlipython-0.1.2.dev0.tar.gz
 
 - [ ] `python setupegg.py sdist bdist_wheel upload -r testpypi`
-- [ ] Check pypi test site for results, possibly `pip install --pre rlipython`
+- [ ] Check pypi test site for results, possibly :
+
+    pip install --pre --upgrade --extra-index https://testpypi.python.org/pypi rlipython
+
 - [ ] `python setupegg.py sdist bdist_wheel upload -r pypi`
 
 
